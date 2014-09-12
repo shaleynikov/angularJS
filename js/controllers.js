@@ -532,4 +532,21 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       });
     };
   }])
+
+    .controller('ParseDemoCtrl', ['$scope', '$http', function( $scope, $http) {
+        Parse.initialize("KStWgAlr3C8EL21gDko2N82IPUsfFB8Jh0S5Y43r", "nYKWdQfCZTZGFx8j4gqphhqltDKjLjRg5fM8cQy9");
+        var Restaurant = Parse.Object.extend("Restaurant");
+
+        $scope.restaurants = [];
+        var query = new Parse.Query(Restaurant);
+        query.find({
+            success: function(objs) {
+                for (var i = 0; i < objs.length; ++i) {
+                    $scope.restaurants.push({name:objs[i].get('name')});
+                    console.log(objs[i].get('name'));
+                }
+                $scope.$apply();
+            }
+        });
+    }])
  ;
