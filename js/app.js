@@ -113,6 +113,11 @@ var app = angular.module('app', [
                     }]
                 }
             })
+            .state('app.restaurants', {
+                url: '/restaurants',
+                templateUrl: 'tpl/page_restaurants.html'
+
+            })
             .state('app.widgets', {
                 url: '/widgets',
                 templateUrl: 'tpl/ui_widgets.html'
