@@ -1,5 +1,6 @@
 html {
-  background-color: #f0f3f4;
+/*  background-color: #f0f3f4;  */
+	background-color: #f0f3f4;
 }
 body {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2349,6 +2350,9 @@ fieldset[disabled] .i-checks input + i:before {
 .bg-black-opacity {
   background-color: rgba(32,43,54,0.5);
 }
+.bg-black-opacityQ {
+  background-color: rgba(32,43,54,0.25);
+}
 .bg-light {
   background-color: #edf1f2;
   color: #58666e;
@@ -2542,7 +2546,7 @@ fieldset[disabled] .i-checks input + i:before {
   background-color: #131e26 !important;
 }
 .bg-primary {
-  background-color: #7266ba;
+  background-color: #A09F9D;
   color: #f4f3f9;
 }
 .bg-primary.lt,
@@ -3875,11 +3879,13 @@ a.text-black:hover {
   transition: all .2s ease-in-out .1s;
 }
 .hover:hover
+
 .hover:focus .hover-action,
 .hover:active .hover-action {
   display: inherit;
 }
 .hover:hover
+
 .hover:focus .hover-rotate,
 .hover:active .hover-rotate {
   -webkit-transform: rotate(90deg);
