@@ -122,6 +122,10 @@ var app = angular.module('app', [
                 url: '/widgets',
                 templateUrl: 'tpl/ui_widgets.html'
             })
+            .state('app.reservationlist', {
+                url: '/reservationlist',
+                templateUrl: 'tpl/ui_reservationlist.html'
+            })
             .state('app.chart', {
                 url: '/chart',
                 templateUrl: 'tpl/ui_chart.html'
