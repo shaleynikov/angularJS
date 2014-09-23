@@ -1,0 +1,28 @@
+<div  ng-controller="RestaurantsListCtrl">
+
+    <div class="wrapper-md">
+
+        <div class="panel b-a" ng-controller="MapCtrl">
+            <div id="map_canvas" style="min-height:250px" ui-map="myMap"
+                 ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+                 ui-options="mapOptions">
+            </div>
+        </div>
+
+        <div class="panel no-border b-a">
+            <ul class="list-group">
+                <li ng-repeat="rest in restaurants" class="list-group-item" style="background-image: url({{rest.imageurl}})">
+                    <h1 style="font-weight: bold; text-shadow: 2px 2px 4px black; color: white;">{{rest.name}}</h1>
+                    <div class="btn-group">
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:00 PM'})" class="btn btn-success btn-sm m-xs">8:00 PM</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:30 PM'})"  class="btn btn-success btn-sm m-xs">8:30 PM</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '9:00 PM'})" class="btn btn-success btn-sm m-xs">9:00 PM</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '9:30 PM'})" class="btn btn-success btn-sm m-xs">9:30 PM</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '10:00 PM'})" class="btn btn-success btn-sm m-xs">10:00 PM</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+</div>
+

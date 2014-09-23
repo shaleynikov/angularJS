@@ -113,6 +113,33 @@ var app = angular.module('app', [
                     }]
                 }
             })
+
+            .state('app.reserve', {
+                url: '/reserve/:restaurantid/:time',
+                templateUrl: 'tpl/page_reserve.html',
+                resolve: {
+                    deps: ['uiLoad',
+                        function( uiLoad ){
+                            return uiLoad.load( ['js/app/map/load-google-maps.js',
+                                'js/modules/ui-map.js',
+                                'js/app/map/map.js'] ).then(function(){ return loadGoogleMaps(); });
+                        }]
+                }
+            })
+            // Just for testing purposes only
+            .state('app.restaurantswithmap', {
+                url: '/restaurants-with-map',
+                templateUrl: 'tpl/page_restaurants_map.html',
+                resolve: {
+                    deps: ['uiLoad',
+                        function( uiLoad ){
+                            return uiLoad.load( ['js/app/map/load-google-maps.js',
+                                'js/modules/ui-map.js',
+                                'js/app/map/map.js'] ).then(function(){ return loadGoogleMaps(); });
+                        }]
+                }
+
+            })
             .state('app.restaurants', {
                 url: '/restaurants',
                 templateUrl: 'tpl/page_restaurants.html'

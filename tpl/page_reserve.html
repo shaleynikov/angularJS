@@ -1,0 +1,117 @@
+<div  ng-controller="ReserveCtrl">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+
+    <div class="col">
+
+    <div>
+
+        <div class="">
+                <carousel interval="250">
+                    <slide>
+                        <img ng-src="{{restaurant.get('imageurl')}}" class="img-full" style="max-height: 250px;">
+                        <div class="carousel-caption">
+                            <h1>{{restaurant.get('name')}}</h1>
+                            <p></p>
+                        </div>
+                    </slide>
+                </carousel>
+        </div>
+    </div>
+
+    <div class="col-md-6 m-t">
+        <div class="panel b-a">
+            <ul class="list-group list-group-lg no-bg auto">
+                <li class="list-group-item clearfix">
+                    <span class="clear">
+                      <span class="h3 font-bold">{{restaurant.get('name')}}</span>
+                      <small class="text-bg-dark clear text-ellipsis">{{restaurant.get('locationcity')}}</small>
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span class="clear">
+                        5 minutes drive
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span class="clear">
+
+                        <small class="text-bg-dark clear text-ellipsis">
+                            <i class="glyphicon-phone glyphicon"></i>
+                            {{restaurant.get('phone')}}
+                        </small>
+                    </span>
+                </li>
+
+                <li class="list-group-item">
+                      <span class="text">
+                        <i class="fa fa-thumbs-up text-success"></i> 25
+                      </span>
+                      <span class="text">
+                        <i class="fa fa-thumbs-down text-danger"></i> 10
+                      </span>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span class="clear">
+                      <small class="text-bg-dark clear text-ellipsis">{{restaurant.get('restaurantDetail')}}</small>
+                    </span>
+                </li>
+                <!--
+                         <li class="list-group-item clearfix">
+                           <span class="pull-left thumb-sm avatar m-r">
+                             <img src="img/a5.jpg" alt="...">
+                             <i class="on b-white bottom"></i>
+                           </span>
+                           <span class="clear">
+                             <span>Amanda Conlan</span>
+                             <small class="text-muted clear text-ellipsis">Come online and we need talk about the plans that we have discussed</small>
+                           </span>
+                         </li>
+                         <li class="list-group-item clearfix">
+                           <span class="pull-left thumb-sm avatar m-r">
+                             <img src="img/a6.jpg" alt="...">
+                             <i class="busy b-white bottom"></i>
+                           </span>
+                           <span class="clear">
+                             <span>Dan Doorack</span>
+                             <small class="text-muted clear text-ellipsis">Hey, Some good news</small>
+                           </span>
+                         </li>
+                         <li class="list-group-item clearfix">
+                           <span class="pull-left thumb-sm avatar m-r">
+                             <img src="img/a7.jpg" alt="...">
+                             <i class="away b-white bottom"></i>
+                           </span>
+                           <span class="clear">
+                             <span>Lauren Taylor</span>
+                             <small class="text-muted clear text-ellipsis">Nice to talk with you.</small>
+                           </span>
+                         </li> -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6 m-t visible-md-block visible-lg-block">
+                <div class="panel b-a" ng-controller="MapCtrl">
+                    <div id="map_canvas" style="min-height:400px" ui-map="myMap"
+                         ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+                         ui-options="mapOptions">
+                    </div>
+                </div>
+    </div>
+
+
+    </div>
+
+    </div>
+
+
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <button class="btn btn-default btn-lg btn-block"><i class="fa pull-right"></i> Add Payment method</button>
+    </div>
+
+
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <button class="btn btn-default btn-lg btn-block btn-success"><i class="fa pull-right"></i> Reserve</button>
+    </div>
+
+</div>

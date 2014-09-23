@@ -12,8 +12,8 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
       // config
       $scope.app = {
-        name: 'Angulr',
-        version: '1.2.0',
+        name: 'TableAt',
+        version: '1.0.0',
         // for chart colors
         color: {
           primary: '#7266ba',
@@ -64,6 +64,8 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $translate.use(langKey);
         $scope.lang.isopen = !$scope.lang.isopen;
       };
+
+      $scope.days = ['Today', 'Tomorrow', moment().add(2, 'days').format('dddd'), moment().add(3, 'days').format('dddd') ]
 
       function isSmartDevice( $window )
       {
@@ -542,7 +544,8 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         query.find({
             success: function(objs) {
                 for (var i = 0; i < objs.length; ++i) {
-                    $scope.restaurants.push({name:objs[i].get('name'), phone: objs[i].get('phone'), imageurl: objs[i].get('imageurl')});
+                    console.log(objs[i]);
+                    $scope.restaurants.push({id: objs[i].id, name:objs[i].get('name'), phone: objs[i].get('phone'), imageurl: objs[i].get('imageurl')});
                     console.log(objs[i].get('name'));
                 }
                 $scope.$apply();
@@ -550,7 +553,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         });
     }])
 
-    .controller('RestaurantsListCtrl', ['$scope', '$http', function( $scope, $http) {
+    .controller('RestaurantsListCtrl', ['$scope', '$http', function( $scope, $http ) {
         Parse.initialize("njlWrfEfZrrb2pQTXr4yJtSK5EoVkbY2Y9mpMYC6", "JVXYBwzCQCDQEeSr6lAeViwRehITULWeLTu27MR8");
         var Restaurant = Parse.Object.extend("Restaurants");
 
@@ -559,11 +562,26 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         query.find({
             success: function(objs) {
                 for (var i = 0; i < objs.length; ++i) {
-                    $scope.restaurants.push({name:objs[i].get('name'), phone: objs[i].get('phone'), imageurl: objs[i].get('imageurl')});
+                    $scope.restaurants.push({id: objs[i].id, name:objs[i].get('name'), phone: objs[i].get('phone'), imageurl: objs[i].get('imageurl')});
                     console.log(objs[i].get('name'));
                 }
                 $scope.$apply();
             }
         });
+    }])
+    .controller('ReserveCtrl', ['$scope', '$http', '$stateParams', function( $scope, $http, $stateParams ) {
+        Parse.initialize("njlWrfEfZrrb2pQTXr4yJtSK5EoVkbY2Y9mpMYC6", "JVXYBwzCQCDQEeSr6lAeViwRehITULWeLTu27MR8");
+        var Restaurant = Parse.Object.extend("Restaurants");
+
+        var query = new Parse.Query(Restaurant);
+        query.get( $stateParams.restaurantid, {
+            success: function(obj) {
+                console.log(obj);
+                $scope.restaurant = obj;
+                $scope.$apply();
+            }
+        });
+
+        $scope.time = $stateParams['time'];
     }])
  ;
