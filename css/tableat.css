@@ -56,3 +56,19 @@
   background-position: 50% 50%;
   min-height: 150px;
 }
+.restaurant .stars {
+  color: #fbd089;
+}
+#map_canvas {
+  -moz-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.mapFocus {
+  height: 350px;
+  min-height: 350px;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}

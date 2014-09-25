@@ -1,31 +1,40 @@
 <div  ng-controller="RestaurantsListCtrl">
 
         <div class="" ng-controller="MapCtrl">
-            <div id="map_canvas" style="min-height:140px" ui-map="myMap"
-                 ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
-                 ui-options="mapOptions">
+            <div id="map_canvas" style="height: 140px;" ui-map="myMap"
+                 ui-event="{'map-click': '$parent.mapFocus = true', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+                 ui-options="mapOptions" ng-class="{ 'mapFocus': $parent.mapFocus }">
             </div>
         </div>
 
         <div class="no-border">
             <ul class="list-group">
-                <li ng-repeat="rest in restaurants" class="list-group-item restaurant" style="background-image:   linear-gradient(to bottom, transparent, rgba(0,0,0,0.4)), url({{rest.imageurl}});">
+                <li ng-repeat="rest in restaurants" class="list-group-item restaurant" style="background-image:   linear-gradient(to bottom, transparent, rgba(0,0,0,0.4)), url({{rest.imageurl}});" ng-click="$parent.mapFocus = false">
                      <div class="btn-group pull-right">
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:00 PM'})" class="btn btn-success btn-sm m-xs">8:00 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:30 PM'})"  class="btn btn-success btn-sm m-xs">8:30 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:30 PM'})"  class="btn btn-success btn-sm m-xs">...</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:00 PM'})" class="btn btn-success btn-sm m-xs" ng-animate="'animate'">8:00 PM</button>
+                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:30 PM'})"  class="btn btn-success btn-sm m-xs" ng-animate="'animate'">8:30 PM</button>
+                        <button class="btn btn-success btn-sm m-xs" ng-animate="'animate'">...</button>
+                        <ul class="dropdown-menu">
+                            <li>8:30pm</li>
+                            <li>9:00pm</li>
+                            <li>9:30pm</li>
+                            <li>10:00pm</li>
+                            <li>10:30pm</li>
+                            <li>11:00pm</li>
+                        </ul>
                     </div>
 
                     <h1 class="m-t-xxl">{{rest.name}}</h1>
                     <div><span>Pizza</span>, <span>Pasta</span></div>
+                    <div class="stars pull-right">
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                    </div>
+
                     <div>3 miles</div>
-                    <!--<div class="btn-group">
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:00 PM'})" class="btn btn-success btn-sm m-xs">8:00 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '8:30 PM'})"  class="btn btn-success btn-sm m-xs">8:30 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '9:00 PM'})" class="btn btn-success btn-sm m-xs">9:00 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '9:30 PM'})" class="btn btn-success btn-sm m-xs">9:30 PM</button>
-                        <button ui-sref="app.reserve({restaurantid: rest.id, time: '10:00 PM'})" class="btn btn-success btn-sm m-xs">10:00 PM</button>
-                    </div>-->
                 </li>
             </ul>
         </div>

@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
+angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies', 'duScroll', 'ngAnimate'])
   .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
     function(              $scope,   $translate,   $localStorage,   $window ) {
       // add 'ie' classes to html
@@ -553,11 +553,28 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         });
     }])
 
-    .controller('RestaurantsListCtrl', ['$scope', '$http', function( $scope, $http ) {
+    .controller('RestaurantsListCtrl', ['$scope', '$http', '$timeout', '$document', function( $scope, $http, $timeout, $document ) {
         Parse.initialize("njlWrfEfZrrb2pQTXr4yJtSK5EoVkbY2Y9mpMYC6", "JVXYBwzCQCDQEeSr6lAeViwRehITULWeLTu27MR8");
         var Restaurant = Parse.Object.extend("Restaurants");
 
         $scope.restaurants = [];
+        $scope.topThreshold = -40;
+        $scope.bottomThreshold = 50;
+        $scope.mapFocus = false;
+
+        $document.on('scroll', function() {
+            console.log("scrollTop:" + $document.scrollTop() + ", " + $scope.mapFocus.toString());
+            if ( !$scope.mapFocus && $document.scrollTop() < $scope.topThreshold ) {
+                console.log("Setting MapFocus" + $document.scrollTop());
+                $scope.mapFocus = true;
+                $scope.$apply();
+            }
+            if ( $scope.mapFocus && $document.scrollTop() > $scope.bottomThreshold ) {
+                console.log("Cleaning MapFocus");
+                $scope.mapFocus = false;
+                $scope.$apply();
+            }
+        });
         var query = new Parse.Query(Restaurant);
         query.find({
             success: function(objs) {

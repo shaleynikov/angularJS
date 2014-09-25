@@ -133,6 +133,7 @@ var app = angular.module('app', [
                 resolve: {
                     deps: ['uiLoad',
                         function( uiLoad ){
+
                             return uiLoad.load( ['js/app/map/load-google-maps.js',
                                 'js/modules/ui-map.js',
                                 'js/app/map/map.js'] ).then(function(){ return loadGoogleMaps(); });
